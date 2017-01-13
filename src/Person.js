@@ -1,17 +1,22 @@
 import React from 'react';
 
 export default class Person extends React.Component {
-  static propTypes = {
-    name: React.PropTypes.string,
-  };
+
 
   constructor(props) {
     super(props);
   }
 
   render() {
+    let {people} = this.props;
+    let {person} = this.props;
     return (
-      <div></div>
+      <div>
+        <p>{`${people[person].firstName} ${people[person].lastName}`}</p>
+        <p> - {people[person].about}</p>
+        <p>{people[person].guests}</p>
+        <button>Delete</button>
+      </div>
     );
   }
 }
