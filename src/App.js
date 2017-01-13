@@ -14,6 +14,7 @@ class App extends Component {
     }
     this.addAPerson = this.addAPerson.bind(this);
     this.submitNewPerson = this.submitNewPerson.bind(this);
+    this.deletePerson = this.deletePerson.bind(this);
   }
 
   componentDidMount() {
@@ -47,7 +48,7 @@ class App extends Component {
     this.setState({ isAddingPerson: true })
   }
 
-  submitNewPerson (firstName, lastName, about = '', guests) {
+  submitNewPerson (firstName, lastName, about, guests) {
     if (guests === '' || NaN)
       guests = 0;
     let person = {
@@ -61,6 +62,18 @@ class App extends Component {
     this.setState({isAddingPerson: false})
   }
 
+  deletePerson(person) {
+    axios.delete(`https://putmeonthelist-a86b4.firebaseio.com/key/people/${person}.json`)
+      .then((response) => {
+        let people = {...this.state.people};
+        delete people[person];
+        this.setState({ people })
+      })
+      .catch((response) => {
+        console.log(response);
+      })
+  }
+
   render() {
     return (
       <div className="admin-page">
@@ -69,7 +82,9 @@ class App extends Component {
           isAddingPerson={this.state.isAddingPerson}
           addAPerson={this.addAPerson}
           submitNewPerson={this.submitNewPerson}/>
-        <PersonList people={this.state.people}/>
+        <PersonList
+          people={this.state.people}
+          deletePerson={this.deletePerson}/>
       </div>
     );
   }
