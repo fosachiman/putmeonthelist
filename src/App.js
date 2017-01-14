@@ -15,6 +15,9 @@ class App extends Component {
     this.addAPerson = this.addAPerson.bind(this);
     this.submitNewPerson = this.submitNewPerson.bind(this);
     this.deletePerson = this.deletePerson.bind(this);
+    this.getRequest = this.getRequest.bind(this);
+    this.editPerson = this.editPerson.bind(this);
+    this.putRequest = this.putRequest.bind(this);
   }
 
   componentDidMount() {
@@ -24,6 +27,7 @@ class App extends Component {
   getRequest() {
     axios.get("https://putmeonthelist-a86b4.firebaseio.com/key/people/.json")
       .then((response) => {
+        console.log(response);
         this.setState({ people: response.data });
       })
       .catch((response) =>{
@@ -41,6 +45,16 @@ class App extends Component {
       })
       .catch((response) => {
         console.log(response)
+      })
+  }
+
+  putRequest(person) {
+    axios.put(`https://putmeonthelist-a86b4.firebaseio.com/key/people/${person}.json`, this.state.people[person])
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((response) => {
+        console.log(response);
       })
   }
 
@@ -74,6 +88,14 @@ class App extends Component {
       })
   }
 
+  editPerson(person, attribute, event) {
+    let people = {...this.state.people};
+    let attr = event.target.value
+    people[person][attribute] = attr;
+    this.setState({ people })
+    console.log(person);
+  }
+
   render() {
     return (
       <div className="admin-page">
@@ -81,10 +103,15 @@ class App extends Component {
         <AddPerson
           isAddingPerson={this.state.isAddingPerson}
           addAPerson={this.addAPerson}
-          submitNewPerson={this.submitNewPerson}/>
+          submitNewPerson={this.submitNewPerson}
+        />
         <PersonList
           people={this.state.people}
-          deletePerson={this.deletePerson}/>
+          deletePerson={this.deletePerson}
+          editPerson={this.editPerson}
+          putRequest={this.putRequest}
+        />
+
       </div>
     );
   }
