@@ -6,7 +6,6 @@ export default class AddPerson extends React.Component {
   render() {
     let componentRender;
     let {isAddingPerson} = this.props;
-    console.log(isAddingPerson);
     if (!isAddingPerson)
       componentRender = (
           <button onClick={() => this.props.addAPerson()}>Add a Person</button>

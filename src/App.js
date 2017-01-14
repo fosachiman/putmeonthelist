@@ -11,6 +11,8 @@ class App extends Component {
     this.state = {
       isAddingPerson: false,
       people: {},
+      confirms: 0,
+      arrivals: 0,
     }
     this.addAPerson = this.addAPerson.bind(this);
     this.submitNewPerson = this.submitNewPerson.bind(this);
@@ -22,13 +24,15 @@ class App extends Component {
 
   componentDidMount() {
     this.getRequest();
+
+    this.calculateArrivals();
   }
 
   getRequest() {
     axios.get("https://putmeonthelist-a86b4.firebaseio.com/key/people/.json")
       .then((response) => {
-        console.log(response);
         this.setState({ people: response.data });
+        this.calculateConfirms();
       })
       .catch((response) =>{
         console.log(response)
@@ -42,6 +46,7 @@ class App extends Component {
         let personId = response.data.name;
         people[personId] = person;
         this.setState({ people })
+        this.calculateConfirms();
       })
       .catch((response) => {
         console.log(response)
@@ -52,10 +57,31 @@ class App extends Component {
     axios.put(`https://putmeonthelist-a86b4.firebaseio.com/key/people/${person}.json`, this.state.people[person])
       .then((response) => {
         console.log(response);
+        this.calculateConfirms();
       })
       .catch((response) => {
         console.log(response);
       })
+  }
+
+  calculateConfirms() {
+    let people = {...this.state.people}
+    let numOfRSVPs = Object.keys(people).length
+    let plusOnes = Object.keys(people)
+      .map((person) => {
+        return people[person].guests;
+      })
+    if (plusOnes.length > 0) {
+      let totalPlusOnes = plusOnes.reduce((guests, personGuests) => {
+        return parseInt(guests) + parseInt(personGuests);
+      })
+      let totalConfirms = parseInt(numOfRSVPs) + parseInt(totalPlusOnes)
+      this.setState({ confirms: totalConfirms })
+    }
+  }
+
+  calculateArrivals() {
+
   }
 
   addAPerson () {
@@ -71,7 +97,6 @@ class App extends Component {
       about: about,
       guests: guests,
     }
-    console.log(person);
     this.postRequest(person);
     this.setState({isAddingPerson: false})
   }
@@ -81,7 +106,8 @@ class App extends Component {
       .then((response) => {
         let people = {...this.state.people};
         delete people[person];
-        this.setState({ people })
+        this.setState({ people });
+        this.calculateConfirms();
       })
       .catch((response) => {
         console.log(response);
@@ -93,13 +119,15 @@ class App extends Component {
     let attr = event.target.value
     people[person][attribute] = attr;
     this.setState({ people })
-    console.log(person);
   }
 
   render() {
     return (
       <div className="admin-page">
-        <Header />
+        <Header
+          confirms={this.state.confirms}
+          arrivals={this.state.arrivals}
+        />
         <AddPerson
           isAddingPerson={this.state.isAddingPerson}
           addAPerson={this.addAPerson}

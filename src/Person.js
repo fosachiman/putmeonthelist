@@ -32,6 +32,7 @@ export default class Person extends React.Component {
           <p>{`${people[person].firstName} ${people[person].lastName}`}</p>
           <p> - {people[person].about}</p>
           <p>{people[person].guests}</p>
+          <input type="number" min="0" />
           <button onClick={() => this.changeEditStatus()}>Edit</button>
           <button onClick={() => this.props.deletePerson(person)}>Delete</button>
         </div>
