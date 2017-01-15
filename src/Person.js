@@ -22,6 +22,13 @@ export default class Person extends React.Component {
     this.props.putRequest(person);
   }
 
+  handleNumberChange(event, person) {
+    event.preventDefault();
+    this.props.people[person].numberOfArrivals = event.target.value;
+    this.props.putRequest(person);
+    this.props.calculateArrivals();
+  }
+
   personRender() {
     let {people} = this.props;
     let {person} = this.props;
@@ -32,7 +39,7 @@ export default class Person extends React.Component {
           <p>{`${people[person].firstName} ${people[person].lastName}`}</p>
           <p> - {people[person].about}</p>
           <p>{people[person].guests}</p>
-          <input type="number" min="0" />
+          <input type="number" min="0" onChange={(e) => this.handleNumberChange(e, person)}/>
           <button onClick={() => this.changeEditStatus()}>Edit</button>
           <button onClick={() => this.props.deletePerson(person)}>Delete</button>
         </div>

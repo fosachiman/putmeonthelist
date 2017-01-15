@@ -14,6 +14,7 @@ export default class PersonList extends React.Component {
           deletePerson={this.props.deletePerson}
           editPerson={this.props.editPerson}
           putRequest={this.props.putRequest}
+          calculateArrivals={this.props.calculateArrivals}
         />)
       })
     return (

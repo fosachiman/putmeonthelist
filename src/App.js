@@ -20,12 +20,11 @@ class App extends Component {
     this.getRequest = this.getRequest.bind(this);
     this.editPerson = this.editPerson.bind(this);
     this.putRequest = this.putRequest.bind(this);
+    this.calculateArrivals = this.calculateArrivals.bind(this);
   }
 
   componentDidMount() {
     this.getRequest();
-
-    this.calculateArrivals();
   }
 
   getRequest() {
@@ -33,6 +32,7 @@ class App extends Component {
       .then((response) => {
         this.setState({ people: response.data });
         this.calculateConfirms();
+        this.calculateArrivals();
       })
       .catch((response) =>{
         console.log(response)
@@ -56,7 +56,6 @@ class App extends Component {
   putRequest(person) {
     axios.put(`https://putmeonthelist-a86b4.firebaseio.com/key/people/${person}.json`, this.state.people[person])
       .then((response) => {
-        console.log(response);
         this.calculateConfirms();
       })
       .catch((response) => {
@@ -65,23 +64,33 @@ class App extends Component {
   }
 
   calculateConfirms() {
-    let people = {...this.state.people}
-    let numOfRSVPs = Object.keys(people).length
+    let people = {...this.state.people};
+    let numOfRSVPs = Object.keys(people).length;
     let plusOnes = Object.keys(people)
       .map((person) => {
         return people[person].guests;
-      })
+      });
     if (plusOnes.length > 0) {
       let totalPlusOnes = plusOnes.reduce((guests, personGuests) => {
         return parseInt(guests) + parseInt(personGuests);
       })
-      let totalConfirms = parseInt(numOfRSVPs) + parseInt(totalPlusOnes)
-      this.setState({ confirms: totalConfirms })
+      let totalConfirms = parseInt(numOfRSVPs) + parseInt(totalPlusOnes);
+      this.setState({ confirms: totalConfirms });
     }
   }
 
   calculateArrivals() {
-
+    let people = {...this.state.people};
+    let arrivalsMap = Object.keys(people)
+      .map((person) => {
+        if (people[person].numberOfArrivals === undefined)
+          return 0;
+        return people[person].numberOfArrivals;
+      })
+    let arrivals = arrivalsMap.reduce((arrivals, personArrivals) => {
+      return parseInt(arrivals) + parseInt(personArrivals);
+    })
+    this.setState({ arrivals });
   }
 
   addAPerson () {
@@ -138,6 +147,7 @@ class App extends Component {
           deletePerson={this.deletePerson}
           editPerson={this.editPerson}
           putRequest={this.putRequest}
+          calculateArrivals={this.calculateArrivals}
         />
 
       </div>
