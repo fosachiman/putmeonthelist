@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import RSVPToEvent from './RSVPToEvent';
 
 export default class EventLandingPage extends React.Component {
 
@@ -7,6 +8,7 @@ export default class EventLandingPage extends React.Component {
     super(props);
     this.state = {
       urlMatch: [],
+      isRSVPing: false,
     }
   }
 
@@ -30,6 +32,10 @@ export default class EventLandingPage extends React.Component {
       })
   }
 
+  openRSVP() {
+    this.setState({ isRSVPing: true })
+  }
+
   checkURLMatch() {
     if (this.state.urlMatch.length < 1)
       return (
@@ -40,16 +46,24 @@ export default class EventLandingPage extends React.Component {
     else
       return (
         <div>
-          <button>RSVP to this event</button>
+          <button onClick={() => this.openRSVP()}>RSVP to this event</button>
           <button>Is this your event?</button>
         </div>
       )
   }
 
   render() {
+    let form = null;
+    if (this.state.isRSVPing)
+      form = (
+        <div>
+          <RSVPToEvent url={this.props.url}/>
+        </div>
+      )
     return (
       <div>
         {this.checkURLMatch()}
+        {form}
       </div>
     );
   }

@@ -32,7 +32,6 @@ class App extends Component {
   getRequestEvent() {
     axios.get(`https://putmeonthelist-a86b4.firebaseio.com/${this.props.params.id}/.json`)
       .then((response) => {
-        console.log(response);
         this.setState({ eventDetails: response.data });
       })
       .catch((response) => {
