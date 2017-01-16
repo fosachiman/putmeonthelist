@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router';
-import App from './App';
+import '../Style/CreateEvent.css';
+import { FormGroup, ControlLabel, FormControl, HelpBlock, Button } from 'react-bootstrap';
 
 export default class CreateEvent extends React.Component {
   constructor() {
@@ -9,7 +10,9 @@ export default class CreateEvent extends React.Component {
     this.state = {
       pageId: '',
       isAuth: false,
+      fieldValue: '',
     }
+    this.handleChange = this.handleChange.bind(this);
   }
 
   postRequest(name, date, location, capacity, maxGuests) {
@@ -33,6 +36,16 @@ export default class CreateEvent extends React.Component {
       })
   }
 
+  getValidationState() {
+    const length = this.state.fieldValue.length;
+    if (length < 1) return 'warning';
+    else return 'success';
+  }
+
+  handleChange(e) {
+    this.setState({ fieldValue: e.target.value })
+  }
+
   eventLandingPage() {
     if (this.state.isAuth === true)
       return (
@@ -43,12 +56,87 @@ export default class CreateEvent extends React.Component {
     else
       return (
         <div>
-          <input type="text" placeholder="Event Name" ref={(input) => this.name = input}/>
-          <input type="date" ref={(input) => this.date = input}/>
-          <input type="text" placeholder="Location" ref={(input) => this.location = input}/>
-          <input type="text" placeholder="Capacity (optional)" ref={(input) => this.capacity = input}/>
-          <input type="number" placeholder="Max number of guests (optional)" ref={(input) => this.maxGuests = input}/>
-          <button onClick={() => this.postRequest(this.name.value, this.date.value, this.location.value, this.capacity.value, this.maxGuests.value)}>Submit</button>
+          <h1>Create Your Event</h1>
+          <h3>Don't worry, you can change any of these fields later</h3>
+          <FormGroup
+            controlId="formBasicText"
+            validationState={this.getValidationState()}
+          >
+            <ControlLabel>What is the name of your event?</ControlLabel>
+            <FormControl
+              type="text"
+              value={this.state.value}
+              placeholder="Event Name"
+              onChange={this.handleChange}
+              inputRef={(input) => this.name = input}
+            />
+            <FormControl.Feedback />
+            <HelpBlock>This field is required.</HelpBlock>
+          </FormGroup>
+          <FormGroup
+            controlId="formBasicText"
+            validationState={this.getValidationState()}
+          >
+            <ControlLabel>When is your event?</ControlLabel>
+            <FormControl
+              type="date"
+              value={this.state.value}
+              placeholder="Date of Event"
+              onChange={this.handleChange}
+              inputRef={(input) => this.date = input}
+            />
+            <FormControl.Feedback />
+            <HelpBlock>This field is required.</HelpBlock>
+          </FormGroup>
+          <FormGroup
+            controlId="formBasicText"
+            validationState={this.getValidationState()}
+          >
+            <ControlLabel>Where is your event being held?</ControlLabel>
+            <FormControl
+              type="text"
+              value={this.state.value}
+              placeholder="Location of Event"
+              onChange={this.handleChange}
+              inputRef={(input) => this.location = input}
+            />
+            <FormControl.Feedback />
+            <HelpBlock>This field is required.</HelpBlock>
+          </FormGroup>
+
+          <FormGroup
+            controlId="formBasicText"
+          >
+            <ControlLabel>What is the max capacity of the venue?</ControlLabel>
+            <FormControl
+              type="text"
+              value={this.state.value}
+              placeholder="Maximum number of attendees"
+              onChange={this.handleChange}
+              inputRef={(input) => this.capacity = input}
+            />
+            <FormControl.Feedback />
+            <HelpBlock>This field is optional.</HelpBlock>
+          </FormGroup>
+
+          <FormGroup
+            controlId="formBasicText"
+          >
+            <ControlLabel>How many guests will you allow each invitee to bring?</ControlLabel>
+            <FormControl
+              type="text"
+              value={this.state.value}
+              placeholder="Max number of +1s"
+              onChange={this.handleChange}
+              inputRef={(input) => this.maxGuests = input}
+            />
+            <FormControl.Feedback />
+            <HelpBlock>This field is optional.</HelpBlock>
+          </FormGroup>
+          <Button bsSize="large" bsStyle="primary"
+            onClick={() => this.postRequest(this.name.value, this.date.value, this.location.value, this.capacity.value, this.maxGuests.value)}
+            >Submit
+          </Button>
         </div>
       )
   }

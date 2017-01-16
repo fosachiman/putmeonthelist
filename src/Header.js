@@ -5,11 +5,12 @@ export default class Header extends React.Component {
   render() {
     return (
       <div className="header">
-        <img src="#" alt="" />
-        <h1>{this.props.eventDetails.eventName}</h1>
-        <p>Number of people on the list: {this.props.confirms}</p>
-        <p>Number of people who have shown up: {this.props.arrivals}</p>
-        <p>Capacity of event</p>
+        <h1 className="event-name">{this.props.eventDetails.eventName}</h1>
+        <div className="flex-container">
+          <div className="on-the-list">On The List<div className="stats">{this.props.confirms}</div></div>
+          <div className="arrived">Arrived<div className="stats">{this.props.arrivals}</div></div>
+          <div className="capacity">Capacity<div className="stats">{this.props.eventDetails.maxCapacity}</div></div>
+        </div>
       </div>
     );
   }

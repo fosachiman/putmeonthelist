@@ -1,0 +1,17 @@
+.home-title {
+  text-align: center;
+  margin-top: 10%;
+}
+
+.home-sub-header {
+  text-align: center;
+}
+
+.begin-event-button {
+  margin: 0 auto;
+  display: block;
+}
+
+.link:hover {
+  text-decoration: none;
+}
