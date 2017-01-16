@@ -13,6 +13,7 @@ class App extends Component {
       people: {},
       confirms: 0,
       arrivals: 0,
+      eventDetails: {},
     }
     this.addAPerson = this.addAPerson.bind(this);
     this.submitNewPerson = this.submitNewPerson.bind(this);
@@ -24,11 +25,23 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.getRequestEvent();
     this.getRequest();
   }
 
+  getRequestEvent() {
+    axios.get(`https://putmeonthelist-a86b4.firebaseio.com/${this.props.params.id}/.json`)
+      .then((response) => {
+        console.log(response);
+        this.setState({ eventDetails: response.data });
+      })
+      .catch((response) => {
+        console.log(response);
+      })
+  }
+
   getRequest() {
-    axios.get("https://putmeonthelist-a86b4.firebaseio.com/key/people/.json")
+    axios.get(`https://putmeonthelist-a86b4.firebaseio.com/${this.props.params.id}/people/.json`)
       .then((response) => {
         this.setState({ people: response.data });
         this.calculateConfirms();
@@ -40,7 +53,7 @@ class App extends Component {
   }
 
   postRequest(person) {
-    axios.post("https://putmeonthelist-a86b4.firebaseio.com/key/people/.json", person)
+    axios.post(`https://putmeonthelist-a86b4.firebaseio.com/${this.props.params.id}/people/.json`, person)
       .then((response) => {
         let people = {...this.state.people};
         let personId = response.data.name;
@@ -54,7 +67,7 @@ class App extends Component {
   }
 
   putRequest(person) {
-    axios.put(`https://putmeonthelist-a86b4.firebaseio.com/key/people/${person}.json`, this.state.people[person])
+    axios.put(`https://putmeonthelist-a86b4.firebaseio.com/${this.props.params.id}/people/${person}.json`, this.state.people[person])
       .then((response) => {
         this.calculateConfirms();
       })
@@ -111,7 +124,7 @@ class App extends Component {
   }
 
   deletePerson(person) {
-    axios.delete(`https://putmeonthelist-a86b4.firebaseio.com/key/people/${person}.json`)
+    axios.delete(`https://putmeonthelist-a86b4.firebaseio.com/${this.props.params.id}/people/${person}.json`)
       .then((response) => {
         let people = {...this.state.people};
         delete people[person];
@@ -136,6 +149,7 @@ class App extends Component {
         <Header
           confirms={this.state.confirms}
           arrivals={this.state.arrivals}
+          eventDetails={this.state.eventDetails}
         />
         <AddPerson
           isAddingPerson={this.state.isAddingPerson}
@@ -149,7 +163,6 @@ class App extends Component {
           putRequest={this.putRequest}
           calculateArrivals={this.calculateArrivals}
         />
-
       </div>
     );
   }

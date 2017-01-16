@@ -6,7 +6,7 @@ export default class Header extends React.Component {
     return (
       <div className="header">
         <img src="#" alt="" />
-        <h1>Event Name</h1>
+        <h1>{this.props.eventDetails.eventName}</h1>
         <p>Number of people on the list: {this.props.confirms}</p>
         <p>Number of people who have shown up: {this.props.arrivals}</p>
         <p>Capacity of event</p>
