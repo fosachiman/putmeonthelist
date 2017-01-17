@@ -2,13 +2,6 @@ import React from 'react';
 import axios from 'axios';
 
 export default class RSVPToEvent extends React.Component {
-  static propTypes = {
-    name: React.PropTypes.string,
-  };
-
-  constructor(props) {
-    super(props);
-  }
 
   submitNewPerson(firstName, lastName, guests) {
     if (guests === '' || NaN)
@@ -17,6 +10,8 @@ export default class RSVPToEvent extends React.Component {
       firstName: firstName,
       lastName: lastName,
       guests: guests,
+      about: '',
+      numberOfArrivals: 0,
     }
     this.postRequest(person);
   }

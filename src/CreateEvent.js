@@ -10,9 +10,7 @@ export default class CreateEvent extends React.Component {
     this.state = {
       pageId: '',
       isAuth: false,
-      fieldValue: '',
     }
-    this.handleChange = this.handleChange.bind(this);
   }
 
   postRequest(name, date, location, capacity, maxGuests) {
@@ -42,10 +40,6 @@ export default class CreateEvent extends React.Component {
     else return 'success';
   }
 
-  handleChange(e) {
-    this.setState({ fieldValue: e.target.value })
-  }
-
   eventLandingPage() {
     if (this.state.isAuth === true)
       return (
@@ -55,12 +49,11 @@ export default class CreateEvent extends React.Component {
       )
     else
       return (
-        <div>
+        <div className="create-event-page">
           <h1>Create Your Event</h1>
           <h3>Don't worry, you can change any of these fields later</h3>
           <FormGroup
             controlId="formBasicText"
-            validationState={this.getValidationState()}
           >
             <ControlLabel>What is the name of your event?</ControlLabel>
             <FormControl
@@ -75,7 +68,6 @@ export default class CreateEvent extends React.Component {
           </FormGroup>
           <FormGroup
             controlId="formBasicText"
-            validationState={this.getValidationState()}
           >
             <ControlLabel>When is your event?</ControlLabel>
             <FormControl
@@ -90,7 +82,6 @@ export default class CreateEvent extends React.Component {
           </FormGroup>
           <FormGroup
             controlId="formBasicText"
-            validationState={this.getValidationState()}
           >
             <ControlLabel>Where is your event being held?</ControlLabel>
             <FormControl

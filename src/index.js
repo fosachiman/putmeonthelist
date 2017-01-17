@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Match, Miss, Link } from 'react-router';
+import { BrowserRouter, Match, Miss } from 'react-router';
 import App from './App';
 import '../Style/index.css';
 import Homepage from './Homepage';
 import CreateEvent from './CreateEvent';
 import EventLandingPage from './EventLandingPage';
+import NotFound from './NotFound';
 
 const Root = () => {
   return(
@@ -24,6 +25,9 @@ const Root = () => {
             exactly
             pattern="/event/admin/:id"
             component={App}
+          />
+          <Miss
+            component={NotFound}
           />
         </div>
       </BrowserRouter>

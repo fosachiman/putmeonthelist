@@ -22,6 +22,8 @@ class App extends Component {
     this.editPerson = this.editPerson.bind(this);
     this.putRequest = this.putRequest.bind(this);
     this.calculateArrivals = this.calculateArrivals.bind(this);
+    this.changeArrivals = this.changeArrivals.bind(this);
+    this.cancelAddPerson = this.cancelAddPerson.bind(this);
   }
 
   componentDidMount() {
@@ -95,7 +97,7 @@ class App extends Component {
     let people = {...this.state.people};
     let arrivalsMap = Object.keys(people)
       .map((person) => {
-        if (people[person].numberOfArrivals === undefined)
+        if (people[person].numberOfArrivals === undefined || people[person].numberOfArrivals === NaN)
           return 0;
         return people[person].numberOfArrivals;
       })
@@ -109,6 +111,10 @@ class App extends Component {
     this.setState({ isAddingPerson: true })
   }
 
+  cancelAddPerson () {
+    this.setState({ isAddingPerson: false })
+  }
+
   submitNewPerson (firstName, lastName, about, guests) {
     if (guests === '' || NaN)
       guests = 0;
@@ -117,6 +123,7 @@ class App extends Component {
       lastName: lastName,
       about: about,
       guests: guests,
+      numberOfArrivals: 0,
     }
     this.postRequest(person);
     this.setState({isAddingPerson: false})
@@ -142,6 +149,14 @@ class App extends Component {
     this.setState({ people })
   }
 
+  changeArrivals(person, arrivals) {
+    let people = {...this.state.people}
+    people[person].numberOfArrivals = arrivals;
+    this.setState({ people });
+    this.putRequest(person);
+    this.calculateArrivals();
+  }
+
   render() {
     return (
       <div className="admin-page">
@@ -154,6 +169,7 @@ class App extends Component {
           isAddingPerson={this.state.isAddingPerson}
           addAPerson={this.addAPerson}
           submitNewPerson={this.submitNewPerson}
+          cancelAddPerson={this.cancelAddPerson}
         />
         <PersonList
           people={this.state.people}
@@ -161,6 +177,7 @@ class App extends Component {
           editPerson={this.editPerson}
           putRequest={this.putRequest}
           calculateArrivals={this.calculateArrivals}
+          changeArrivals={this.changeArrivals}
         />
       </div>
     );

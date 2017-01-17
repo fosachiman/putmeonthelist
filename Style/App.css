@@ -1,27 +1,137 @@
 .header {
-  background-color: green;
   margin: 0;
   padding: 0;
 }
-
 .event-name {
   text-align: center;
   margin: 0;
-  padding: 5%;
+  padding: 2%;
 }
-
+.date {
+  text-align: center;
+}
 .flex-container{
   display: flex;
   justify-content: space-around;
-  max-width: 800px;
+  max-width: 500px;
   margin: 0 auto;
 }
-.on-the-list {
+.stats > .on-the-list, .arrived, .capacity {
   flex-direction: row;
-}
-.arrived {
-  flex-direction: row;
+  text-align: center;
+  font-size: 0.333em;
+  background-color: rgba(255,255,255,1);
+  padding-top: 2%;
 }
 .stats {
+  font-size: 3em;
   text-align: center;
+  background-color: rgba(245,245,245,.8);
+  min-width: 80px;
+  border-radius: 3px;
+}
+.add-person-container {
+  margin: 0;
+  padding: 0;
+}
+.add-person-form {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.button-container {
+  max-width: 500px;
+  margin: 1% auto;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+.add-a-person-button {
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto;
+  background-color: rgb(26,188,156);
+  border: none;
+}
+.add-button-label {
+  text-align: center;
+  padding-top: 2%;
+}
+.get-share-link {
+  display: block;
+  margin: 2% auto;
+  background-color: rgb(26,188,156);
+}
+.add-person-header {
+  text-align: center;
+}
+.person-container {
+  max-width: 600px;
+  margin: 1% auto;
+  display: flex;
+  border-radius: 5px;
+}
+.person {
+  width: 100%;
+  background-color:rgba(245,245,245,.8);
+}
+.name-about {
+  display: inline-block;
+  width: 50%;
+  padding: 2%;
+}
+.guests {
+  display: inline-block;
+  width: 15%;
+  vertical-align: middle;
+  font-size: 3em;
+  margin-bottom: 5%;
+  padding-left: 2%;
+}
+.name {
+  font-size: 2em;
+  margin: 0;
+  border-bottom: 1px dotted gray;
+}
+.arrivals-container {
+  width: 25%;
+  height: 100%;
+  background-color: rgba(220,220,220,1);
+  display: inline-block;
+  vertical-align: top;
+}
+.arrivals {
+  font-size: 3.5em;
+  display: inline-block;
+  padding-left: 10%;
+  vertical-align: top;
+  padding-top: 11%
+}
+.person-button-container {
+  display: inline-block;
+  height: 100%;
+  padding-left: 15%;
+
+}
+.plus-button {
+  height: 46%;
+  margin-top: 2%;
+  background-color: green;
+  text-align: center;
+  border-radius: 30%;
+  display: block;
+  color: white;
+  border: none;
+}
+.minus-button {
+  height: 46%;
+  text-align: center;
+  background-color: red;
+  border-radius: 30%;
+  display: block;
+  color: white;
+  border: none;
+  margin-top: 2%;
+}
+.edit-delete-button-container {
+  width: 10%;
+  display: inline-block;
 }
