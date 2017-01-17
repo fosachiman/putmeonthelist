@@ -1,0 +1,13 @@
+.event-landing-page {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.rsvp-form {
+  max-width: 700px;
+  margin: 5% auto;
+}
+.submit-button {
+  display: block;
+  margin: 0 auto;
+}

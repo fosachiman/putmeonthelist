@@ -58,11 +58,11 @@ export default class Person extends React.Component {
         <div className="person">
           <div className="name-about">
             <p className="name">{`${people[person].firstName} ${people[person].lastName}`}</p>
-            <p> - {people[person].about}</p>
+            <p className="about">{people[person].about}</p>
           </div>
           <p className="guests">{this.guests(person)}</p>
           <div className="arrivals-container">
-            <p className="arrivals">{this.state.arrivals}</p>
+            <p className="arrivals">{people[person].numberOfArrivals}</p>
             <div className="person-button-container">
               <Button bsSize="large" className="plus-button" onClick={() => this.incrementArrivals(person)}>+</Button>
               <Button bsSize="large" className="minus-button" onClick={() => this.decrementArrivals(person)}>_</Button>

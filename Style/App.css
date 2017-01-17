@@ -10,6 +10,10 @@
 .date {
   text-align: center;
 }
+.rsvp-link {
+  max-width: 600px;
+  margin: 2% auto;
+}
 .flex-container{
   display: flex;
   justify-content: space-around;
@@ -64,7 +68,7 @@
   text-align: center;
 }
 .person-container {
-  max-width: 600px;
+  max-width: 700px;
   margin: 1% auto;
   display: flex;
   border-radius: 5px;
@@ -72,6 +76,7 @@
 .person {
   width: 100%;
   background-color:rgba(245,245,245,.8);
+  max-height: 100px;
 }
 .name-about {
   display: inline-block;
@@ -92,7 +97,7 @@
   border-bottom: 1px dotted gray;
 }
 .arrivals-container {
-  width: 25%;
+  width: 20%;
   height: 100%;
   background-color: rgba(220,220,220,1);
   display: inline-block;
@@ -132,6 +137,6 @@
   margin-top: 2%;
 }
 .edit-delete-button-container {
-  width: 10%;
+  width: 15%;
   display: inline-block;
 }

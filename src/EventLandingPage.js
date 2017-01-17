@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import RSVPToEvent from './RSVPToEvent';
+import '../Style/EventLandingPage.css';
+import { Button } from 'react-bootstrap';
 
 export default class EventLandingPage extends React.Component {
 
@@ -9,6 +11,7 @@ export default class EventLandingPage extends React.Component {
     this.state = {
       urlMatch: [],
       isRSVPing: false,
+      eventDetails: {},
     }
   }
 
@@ -21,6 +24,8 @@ export default class EventLandingPage extends React.Component {
       .then((response) => {
         console.log(response);
         console.log(this.props.url);
+        let eventDetails = response.data[this.props.url];
+        this.setState({ eventDetails })
         let arrMatch = Object.keys(response.data)
           .filter((id) => {
             return id === this.props.url;
@@ -45,9 +50,12 @@ export default class EventLandingPage extends React.Component {
       )
     else
       return (
-        <div>
-          <button onClick={() => this.openRSVP()}>RSVP to this event</button>
-          <button>Is this your event?</button>
+        <div className="event-landing-page">
+          <h4>Put Me On The List</h4>
+          <h2>Hello there, you've been invited to:</h2>
+          <h1>{this.state.eventDetails.eventName}</h1>
+          <p>{`${this.state.eventDetails.date} | ${this.state.eventDetails.location}`}</p>
+          <Button bsSize="large" onClick={() => this.openRSVP()}>RSVP to this event</Button>
         </div>
       )
   }

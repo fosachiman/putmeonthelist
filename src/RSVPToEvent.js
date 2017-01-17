@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import { FormGroup, FormControl, HelpBlock, Button } from 'react-bootstrap';
+
 
 export default class RSVPToEvent extends React.Component {
 
@@ -28,11 +30,41 @@ export default class RSVPToEvent extends React.Component {
 
   render() {
     return (
-      <div>
-        <input type="text" placeholder="First Name" ref={(input) => this.firstName = input }/>
-        <input type="text" placeholder="Last Name" ref={(input) => this.lastName = input }/>
-        <input type="number" placeholder="Plus ones?" ref={(input) => this.guests = input }/>
-        <button onClick={() => this.submitNewPerson(this.firstName.value, this.lastName.value, this.guests.value)}>RSVP</button>
+      <div className="rsvp-form">
+        <FormGroup
+          controlId="formBasicText"
+        >
+          <FormControl
+            type="text"
+            placeholder="First Name"
+            inputRef={(input) => this.firstName = input}
+          />
+          <FormControl.Feedback />
+          <HelpBlock>*Required</HelpBlock>
+        </FormGroup>
+        <FormGroup
+          controlId="formBasicText"
+        >
+          <FormControl
+            type="text"
+            placeholder="Last Name"
+            inputRef={(input) => this.lastName = input}
+          />
+          <FormControl.Feedback />
+          <HelpBlock>*Required</HelpBlock>
+        </FormGroup>
+        <FormGroup
+          controlId="formBasicText"
+        >
+          <FormControl
+            type="number"
+            placeholder="Additional Guests"
+            inputRef={(input) => this.guests = input}
+          />
+          <FormControl.Feedback />
+          <HelpBlock>Will this person be bringing additional guests? (Optional)</HelpBlock>
+        </FormGroup>
+        <Button className="submit-button" bsSize="large" onClick={() => this.submitNewPerson(this.firstName.value, this.lastName.value, this.guests.value)}>Add Me To The List</Button>
       </div>
     );
   }

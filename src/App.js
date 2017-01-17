@@ -14,6 +14,7 @@ class App extends Component {
       confirms: 0,
       arrivals: 0,
       eventDetails: {},
+      isSendingInvite: false,
     }
     this.addAPerson = this.addAPerson.bind(this);
     this.submitNewPerson = this.submitNewPerson.bind(this);
@@ -24,6 +25,9 @@ class App extends Component {
     this.calculateArrivals = this.calculateArrivals.bind(this);
     this.changeArrivals = this.changeArrivals.bind(this);
     this.cancelAddPerson = this.cancelAddPerson.bind(this);
+    this.shareLink = this.shareLink.bind(this);
+    this.gotLink = this.gotLink.bind(this);
+
   }
 
   componentDidMount() {
@@ -75,6 +79,14 @@ class App extends Component {
       .catch((response) => {
         console.log(response);
       })
+  }
+
+  shareLink() {
+    this.setState({ isSendingInvite: true })
+  }
+
+  gotLink() {
+    this.setState({ isSendingInvite: false })
   }
 
   calculateConfirms() {
@@ -164,6 +176,10 @@ class App extends Component {
           confirms={this.state.confirms}
           arrivals={this.state.arrivals}
           eventDetails={this.state.eventDetails}
+          isSendingInvite={this.state.isSendingInvite}
+          shareLink={this.shareLink}
+          url={this.props.params.id}
+          gotLink={this.gotLink}
         />
         <AddPerson
           isAddingPerson={this.state.isAddingPerson}
