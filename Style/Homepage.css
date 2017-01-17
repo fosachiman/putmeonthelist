@@ -15,3 +15,9 @@
 .link:hover {
   text-decoration: none;
 }
+.gif {
+  max-width: 300px;
+  max-height: 300px;
+  margin: 2% auto;
+  display: block;
+}
