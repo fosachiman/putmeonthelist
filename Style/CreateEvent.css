@@ -1,4 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand|Righteous');
+
+* {
+  font-family: 'Quicksand', sans-serif;
+}
+
 .create-event-page {
   max-width: 700px;
   margin: 0 auto;
+}
+.event-create-header {
+  color: rgb(26,188,156);
+  text-align: center;
+}
+.event-submit-button {
+  background-color: rgb(26,188,156);
+  color: white;
+  display: block;
+  margin: 2% auto;
+  border: none;
 }

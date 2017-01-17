@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand|Righteous');
+
 .home-title {
   text-align: center;
   margin-top: 10%;
+  color: rgb(26,188,156);
+  font-family: 'Righteous', sans-serif;
 }
 
 .home-sub-header {
@@ -8,8 +12,11 @@
 }
 
 .begin-event-button {
-  margin: 0 auto;
+  margin: 3% auto 0 auto;
   display: block;
+  background-color: rgb(26,188,156);
+  color: white;
+  border: none;
 }
 
 .link:hover {

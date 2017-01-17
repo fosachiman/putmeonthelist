@@ -8,7 +8,6 @@ export default class Person extends React.Component {
     super();
     this.state = {
       isEdit: false,
-      arrivals: 0,
     }
     this.personRender = this.personRender.bind(this);
     this.changeEditStatus = this.changeEditStatus.bind(this);
@@ -25,19 +24,17 @@ export default class Person extends React.Component {
   }
 
   incrementArrivals(person) {
-    if (this.state.arrivals < parseInt(this.props.people[person].guests) + 1) {
-      let arrivals = this.state.arrivals;
+    if (this.props.people[person].numberOfArrivals < parseInt(this.props.people[person].guests) + 1) {
+      let arrivals = this.props.people[person].numberOfArrivals;
       arrivals++;
-      this.setState({ arrivals });
       this.props.changeArrivals(person, arrivals)
     }
   }
 
   decrementArrivals(person) {
-    if (this.state.arrivals > 0) {
-      let arrivals = this.state.arrivals;
+    if (this.props.people[person].numberOfArrivals > 0) {
+      let arrivals = this.props.people[person].numberOfArrivals;
       arrivals--;
-      this.setState({ arrivals });
       this.props.changeArrivals(person, arrivals)
     }
   }
@@ -60,9 +57,9 @@ export default class Person extends React.Component {
             <p className="name">{`${people[person].firstName} ${people[person].lastName}`}</p>
             <p className="about">{people[person].about}</p>
           </div>
-          <p className="guests">{this.guests(person)}</p>
+          <div className="guests">{this.guests(person)}</div>
           <div className="arrivals-container">
-            <p className="arrivals">{people[person].numberOfArrivals}</p>
+            <div className="arrivals">{people[person].numberOfArrivals}</div>
             <div className="person-button-container">
               <Button bsSize="large" className="plus-button" onClick={() => this.incrementArrivals(person)}>+</Button>
               <Button bsSize="large" className="minus-button" onClick={() => this.decrementArrivals(person)}>_</Button>

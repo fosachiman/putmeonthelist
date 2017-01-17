@@ -4,6 +4,12 @@ import { FormGroup, FormControl, HelpBlock, Button } from 'react-bootstrap';
 
 
 export default class RSVPToEvent extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      rsvpd: false,
+    }
+  }
 
   submitNewPerson(firstName, lastName, guests) {
     if (guests === '' || NaN)
@@ -16,6 +22,7 @@ export default class RSVPToEvent extends React.Component {
       numberOfArrivals: 0,
     }
     this.postRequest(person);
+    this.setState({ rsvpd: true })
   }
 
   postRequest(person) {
@@ -29,6 +36,13 @@ export default class RSVPToEvent extends React.Component {
   }
 
   render() {
+    if (this.state.rsvpd)
+      return(
+        <div className="rsvp-form">
+          <h3 className="thanks">Thanks, you're on the list!</h3>
+        </div>
+      )
+    else
     return (
       <div className="rsvp-form">
         <FormGroup
@@ -58,13 +72,16 @@ export default class RSVPToEvent extends React.Component {
         >
           <FormControl
             type="number"
-            placeholder="Additional Guests"
+            placeholder="Number of Additional Guests"
             inputRef={(input) => this.guests = input}
           />
           <FormControl.Feedback />
-          <HelpBlock>Will this person be bringing additional guests? (Optional)</HelpBlock>
+          <HelpBlock>Will you be bringing additional guests? (Optional)</HelpBlock>
         </FormGroup>
-        <Button className="submit-button" bsSize="large" onClick={() => this.submitNewPerson(this.firstName.value, this.lastName.value, this.guests.value)}>Add Me To The List</Button>
+        <Button
+          className="submit-button"
+          bsSize="large"
+          onClick={() => this.submitNewPerson(this.firstName.value, this.lastName.value, this.guests.value)}>Add Me To The List</Button>
       </div>
     );
   }

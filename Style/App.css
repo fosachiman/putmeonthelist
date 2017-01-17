@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand|Righteous');
+
+* {
+  font-family: 'Quicksand', sans-serif;
+}
+
 .header {
   margin: 0;
   padding: 0;
@@ -86,15 +92,18 @@
 .guests {
   display: inline-block;
   width: 15%;
-  vertical-align: middle;
+  vertical-align: top;
   font-size: 3em;
-  margin-bottom: 5%;
   padding-left: 2%;
 }
 .name {
   font-size: 2em;
   margin: 0;
   border-bottom: 1px dotted gray;
+}
+.about {
+  padding: 0;
+  border: 0;
 }
 .arrivals-container {
   width: 30%;
@@ -108,7 +117,6 @@
   display: inline-block;
   padding-left: 10%;
   vertical-align: top;
-  padding-top: 11%
 }
 .person-button-container {
   display: inline-block;

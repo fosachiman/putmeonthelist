@@ -50,7 +50,7 @@ export default class CreateEvent extends React.Component {
     else
       return (
         <div className="create-event-page">
-          <h1>Create Your Event</h1>
+          <h1 className="event-create-header">Create Your Event</h1>
           <h3>Don't worry, you can change any of these fields later</h3>
           <FormGroup
             controlId="formBasicText"
@@ -124,7 +124,7 @@ export default class CreateEvent extends React.Component {
             <FormControl.Feedback />
             <HelpBlock>This field is optional.</HelpBlock>
           </FormGroup>
-          <Button bsSize="large" bsStyle="primary"
+          <Button className="event-submit-button" bsSize="large" bsStyle="primary"
             onClick={() => this.postRequest(this.name.value, this.date.value, this.location.value, this.capacity.value, this.maxGuests.value)}
             >Submit
           </Button>

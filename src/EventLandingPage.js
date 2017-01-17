@@ -51,7 +51,7 @@ export default class EventLandingPage extends React.Component {
     else
       return (
         <div className="event-landing-page">
-          <h4>Put Me On The List</h4>
+          <h4 className="brand-header">Put Me On The List</h4>
           <h2>Hello there, you've been invited to:</h2>
           <h1>{this.state.eventDetails.eventName}</h1>
           <p>{`${this.state.eventDetails.date} | ${this.state.eventDetails.location}`}</p>

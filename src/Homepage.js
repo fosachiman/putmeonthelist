@@ -28,7 +28,7 @@ export default class Homepage extends React.Component {
       <div>
         <h1 className="home-title">Put Me On The List</h1>
         <h3 className="home-sub-header">The easiest way to invite and track your party's guests</h3>
-        <Link className="link" to="/create-event"><Button className="begin-event-button" bsSize="large" bsStyle="primary">Let's Get Started</Button></Link>
+        <Link className="link" to="/create-event"><Button className="begin-event-button" bsSize="large" >Let's Get Started</Button></Link>
         <video className="gif" autoPlay loop
            src={this.state.url} type="video/mp4">
         </video>

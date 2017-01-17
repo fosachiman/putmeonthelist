@@ -27,7 +27,6 @@ class App extends Component {
     this.cancelAddPerson = this.cancelAddPerson.bind(this);
     this.shareLink = this.shareLink.bind(this);
     this.gotLink = this.gotLink.bind(this);
-
   }
 
   componentDidMount() {
