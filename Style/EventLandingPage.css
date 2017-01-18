@@ -19,7 +19,7 @@
   background-color: rgb(26,188,156);
   color: white;
 }
-.submit-button: hover {
+.submit-button:hover {
   display: block;
   margin: 0 auto;
   background-color: rgb(22,178,146);

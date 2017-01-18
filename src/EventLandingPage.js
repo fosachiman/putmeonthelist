@@ -3,6 +3,8 @@ import axios from 'axios';
 import RSVPToEvent from './RSVPToEvent';
 import '../Style/EventLandingPage.css';
 import { Button } from 'react-bootstrap';
+var _reactBootstrap = require('react-bootstrap');
+
 
 export default class EventLandingPage extends React.Component {
 

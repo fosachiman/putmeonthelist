@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import { FormGroup, FormControl, HelpBlock} from 'react-bootstrap';
+var _reactBootstrap = require('react-bootstrap');
+
 
 export default class AddPerson extends React.Component {
 

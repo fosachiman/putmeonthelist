@@ -4,6 +4,8 @@ import Header from './Header';
 import AddPerson from './AddPerson';
 import PersonList from './PersonList';
 import axios from 'axios';
+var _reactBootstrap = require('react-bootstrap');
+
 
 class App extends Component {
   constructor() {
@@ -41,7 +43,7 @@ class App extends Component {
   //requests the event data
 
   getRequestEvent() {
-    axios.get(`https://putmeonthelist-a86b4.firebaseio.com/${this.props.params.id}/.json`)
+    axios.get(`https://putmeonthelist-a86b4.firebaseio.com/${this.props.url}/.json`)
       .then((response) => {
         this.setState({ eventDetails: response.data });
       })
@@ -53,7 +55,7 @@ class App extends Component {
   //requests the person data
 
   getRequest() {
-    axios.get(`https://putmeonthelist-a86b4.firebaseio.com/${this.props.params.id}/people/.json`)
+    axios.get(`https://putmeonthelist-a86b4.firebaseio.com/${this.props.url}/people/.json`)
       .then((response) => {
         this.setState({ people: response.data });
         this.calculateConfirms();
@@ -67,7 +69,7 @@ class App extends Component {
   //adds a person to the correct event
 
   postRequest(person) {
-    axios.post(`https://putmeonthelist-a86b4.firebaseio.com/${this.props.params.id}/people/.json`, person)
+    axios.post(`https://putmeonthelist-a86b4.firebaseio.com/${this.props.url}/people/.json`, person)
       .then((response) => {
         let people = {...this.state.people};
         let personId = response.data.name;
@@ -83,7 +85,7 @@ class App extends Component {
   //revises a person when the admin goes in and clicks the edit button
 
   putRequest(person) {
-    axios.put(`https://putmeonthelist-a86b4.firebaseio.com/${this.props.params.id}/people/${person}.json`, this.state.people[person])
+    axios.put(`https://putmeonthelist-a86b4.firebaseio.com/${this.props.url}/people/${person}.json`, this.state.people[person])
       .then((response) => {
         this.calculateConfirms();
       })
@@ -166,7 +168,7 @@ class App extends Component {
   //deletes a person from the admin page using the delete button
 
   deletePerson(person) {
-    axios.delete(`https://putmeonthelist-a86b4.firebaseio.com/${this.props.params.id}/people/${person}.json`)
+    axios.delete(`https://putmeonthelist-a86b4.firebaseio.com/${this.props.url}/people/${person}.json`)
       .then((response) => {
         let people = {...this.state.people};
         delete people[person];
@@ -207,7 +209,7 @@ class App extends Component {
           eventDetails={this.state.eventDetails}
           isSendingInvite={this.state.isSendingInvite}
           shareLink={this.shareLink}
-          url={this.props.params.id}
+          url={this.props.url}
           gotLink={this.gotLink}
         />
         <AddPerson

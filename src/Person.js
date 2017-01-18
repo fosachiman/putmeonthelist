@@ -1,6 +1,8 @@
 import React from 'react';
 import EditPerson from './EditPerson';
 import { Button, Image } from 'react-bootstrap';
+var _reactBootstrap = require('react-bootstrap');
+
 
 export default class Person extends React.Component {
 

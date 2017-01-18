@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Redirect } from 'react-router';
 import '../Style/CreateEvent.css';
 import { FormGroup, ControlLabel, FormControl, HelpBlock, Button } from 'react-bootstrap';
+var _reactBootstrap = require('react-bootstrap');
+
 
 export default class CreateEvent extends React.Component {
   constructor() {

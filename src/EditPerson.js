@@ -1,4 +1,6 @@
 import React from 'react';
+var _reactBootstrap = require('react-bootstrap');
+
 
 export default class EditPerson extends React.Component {
 

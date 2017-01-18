@@ -7,6 +7,8 @@ import Homepage from './Homepage';
 import CreateEvent from './CreateEvent';
 import EventLandingPage from './EventLandingPage';
 import NotFound from './NotFound';
+var _reactBootstrap = require('react-bootstrap');
+
 
 const Root = () => {
   return(
@@ -24,7 +26,9 @@ const Root = () => {
           <Match
             exactly
             pattern="/event/admin/:id"
-            component={App}
+            component={({ params }) =>
+              <App url={params.id} />
+            }
           />
           <Miss
             component={NotFound}

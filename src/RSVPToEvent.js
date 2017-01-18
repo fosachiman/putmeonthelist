@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { FormGroup, FormControl, HelpBlock, Button } from 'react-bootstrap';
+var _reactBootstrap = require('react-bootstrap');
 
 
 export default class RSVPToEvent extends React.Component {

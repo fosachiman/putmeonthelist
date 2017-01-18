@@ -3,6 +3,8 @@ import { Link } from 'react-router';
 import { Button } from 'react-bootstrap';
 import '../Style/Homepage.css';
 import axios from 'axios';
+var _reactBootstrap = require('react-bootstrap');
+
 
 export default class Homepage extends React.Component {
   constructor() {

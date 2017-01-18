@@ -1,5 +1,7 @@
   import React from 'react';
 import { Button, FormGroup, FormControl, HelpBlock } from 'react-bootstrap';
+var _reactBootstrap = require('react-bootstrap');
+
 
 export default class Header extends React.Component {
 

@@ -1,5 +1,7 @@
 import React from 'react';
 import Person from './Person';
+var _reactBootstrap = require('react-bootstrap');
+
 
 export default class PersonList extends React.Component {
 
