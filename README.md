@@ -2,7 +2,7 @@
 
 ![alt text](./Assets/putmeonthelist.png)
 
-[Link: ] (https://github.com/fosachiman/putmeonthelist/)
+[Link: ] (https://ns-cjuebetxql.now.sh/)
 
 Welcome to Put Me On The List, the easiest way to invite and track your party's guests.  The app idea sprung from past work experiences of managing RSVP lists and Google Docs and manually taking in email responses not cutting it.
 
