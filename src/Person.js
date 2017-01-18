@@ -1,6 +1,6 @@
 import React from 'react';
 import EditPerson from './EditPerson';
-import { Button } from 'react-bootstrap';
+import { Button, Image } from 'react-bootstrap';
 
 export default class Person extends React.Component {
 
@@ -57,15 +57,15 @@ export default class Person extends React.Component {
             <p className="name">{`${people[person].firstName} ${people[person].lastName}`}</p>
             <p className="about">{people[person].about}</p>
           </div>
-          <div className="guests">{this.guests(person)}</div>
+          <div className="guests-edit-delete">
+            <div className="guests">{this.guests(person)}</div>
+            <Image responsive src={require('../Assets/edit2.png')} className="edit" onClick={() => this.changeEditStatus()}/>
+            <Image responsive src={require('../Assets/trashcan.png')} className="delete" onClick={() => this.props.deletePerson(person)}/>
+          </div>
           <div className="arrivals-container">
             <div className="arrivals">{people[person].numberOfArrivals}</div>
-            <div className="person-button-container">
-              <Button bsSize="large" className="plus-button" onClick={() => this.incrementArrivals(person)}>+</Button>
-              <Button bsSize="large" className="minus-button" onClick={() => this.decrementArrivals(person)}>_</Button>
-            </div>
-              <Button onClick={() => this.changeEditStatus()}>Edit</Button>
-              <Button onClick={() => this.props.deletePerson(person)}>Delete</Button>
+            <Image responsive src={require('../Assets/plus.png')} className="plus-button" onClick={() => this.incrementArrivals(person)}/>
+            <Image responsive src={require('../Assets/minus.png')} className="minus-button" onClick={() => this.decrementArrivals(person)}/>
           </div>
         </div>
       )

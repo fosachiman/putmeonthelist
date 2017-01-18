@@ -51,7 +51,7 @@ export default class CreateEvent extends React.Component {
       return (
         <div className="create-event-page">
           <h1 className="event-create-header">Create Your Event</h1>
-          <h3>Don't worry, you can change any of these fields later</h3>
+          <h4 className="create-event-subheader">Don't worry, you can change any of these fields later</h4>
           <FormGroup
             controlId="formBasicText"
           >

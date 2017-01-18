@@ -74,7 +74,7 @@
   text-align: center;
 }
 .person-container {
-  max-width: 700px;
+  max-width: 500px;
   margin: 1% auto;
   display: flex;
   border-radius: 5px;
@@ -82,23 +82,16 @@
 .person {
   width: 100%;
   background-color:rgba(245,245,245,.8);
-  max-height: 100px;
+  max-height: 150px;
 }
 .name-about {
   display: inline-block;
-  width: 40%;
   padding: 2%;
-}
-.guests {
-  display: inline-block;
-  width: 10%;
-  vertical-align: top;
-  font-size: 3em;
-  padding-left: 2%;
-  line-height: 100%;
+  vertical-align: middle;
+  width: 50%;
 }
 .name {
-  font-size: 2em;
+  font-size: 1.5em;
   margin: 0;
   border-bottom: 1px dotted gray;
 }
@@ -106,23 +99,57 @@
   padding: 0;
   margin: 0;
 }
-.arrivals-container {
-  width: 50%;
-  height: 100%;
-  background-color: rgba(220,220,220,1);
+.guests-edit-delete {
   display: inline-block;
-  vertical-align: top;
+  width: 30%;
+}
+.guests {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 2.5em;
+  padding-left: 2%;
+  height: 100%;
+}
+.edit {
+  display: inline-block;
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+  padding-left: 2%;
+  margin-left: 2px;
+}
+.delete {
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+  padding-left: 2%;
+  display: inline-block;
+}
+.arrivals-container {
+  display: inline-block;
+  vertical-align: middle;
+  width: 20%;
 }
 .arrivals {
-  font-size: 3.5em;
+  font-size: 2.5em;
   display: inline-block;
-  padding-left: 10%;
-  line-height: 100%;
   vertical-align: middle;
-}
-.person-button-container {
-  display: inline-block;
   height: 100%;
-  padding-left: 15%;
+  padding-left: 1%;
+}
+.plus-button {
+  display: inline-block;
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+  padding-left: 1%;
+  margin-left: 2px;
+}
+.minus-button {
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+  padding-left: 1%;
+  display: inline-block;
 
 }

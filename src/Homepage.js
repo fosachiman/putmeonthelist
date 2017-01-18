@@ -13,7 +13,7 @@ export default class Homepage extends React.Component {
   }
 
   componentDidMount() {
-  axios.get(`http://api.giphy.com/v1/gifs/search?q=party&api_key=dc6zaTOxFJmzC`)
+  axios.get(`https://api.giphy.com/v1/gifs/search?q=party&api_key=dc6zaTOxFJmzC`)
     .then((response) => {
       let gifLink = response.data.data[Math.floor(Math.random()*25)].images.looping.mp4;
       this.setState({ url: gifLink });
