@@ -4,6 +4,9 @@ import { FormGroup, FormControl, HelpBlock} from 'react-bootstrap';
 
 export default class AddPerson extends React.Component {
 
+//This component adds a new person on the admin (App) page.  "isAddingPerson" is the
+//state that changes on button click, and the form renders when the button is clicked
+//and the admin is adding a person.
 
   render() {
     let componentRender;

@@ -28,11 +28,17 @@ class App extends Component {
     this.shareLink = this.shareLink.bind(this);
     this.gotLink = this.gotLink.bind(this);
   }
+  //This component is the ADMIN page, the main hub where CRUD shines and the admin can make any
+  //updates to the party guests that they'd like
+
+  //on load, the page requests the event data and the person data associated with that event from Firebase
 
   componentDidMount() {
     this.getRequestEvent();
     this.getRequest();
   }
+
+  //requests the event data
 
   getRequestEvent() {
     axios.get(`https://putmeonthelist-a86b4.firebaseio.com/${this.props.params.id}/.json`)
@@ -43,6 +49,8 @@ class App extends Component {
         console.log(response);
       })
   }
+
+  //requests the person data
 
   getRequest() {
     axios.get(`https://putmeonthelist-a86b4.firebaseio.com/${this.props.params.id}/people/.json`)
@@ -55,6 +63,8 @@ class App extends Component {
         console.log(response)
       })
   }
+
+  //adds a person to the correct event
 
   postRequest(person) {
     axios.post(`https://putmeonthelist-a86b4.firebaseio.com/${this.props.params.id}/people/.json`, person)
@@ -70,6 +80,8 @@ class App extends Component {
       })
   }
 
+  //revises a person when the admin goes in and clicks the edit button
+
   putRequest(person) {
     axios.put(`https://putmeonthelist-a86b4.firebaseio.com/${this.props.params.id}/people/${person}.json`, this.state.people[person])
       .then((response) => {
@@ -80,6 +92,9 @@ class App extends Component {
       })
   }
 
+  //the sharelink button in the header is toggled on and off via state, to show the
+  //form element where an ADMIN can get the link to send everyone
+
   shareLink() {
     this.setState({ isSendingInvite: true })
   }
@@ -87,6 +102,8 @@ class App extends Component {
   gotLink() {
     this.setState({ isSendingInvite: false })
   }
+
+  //this method calculates the number of confirmations for the event.
 
   calculateConfirms() {
     let people = {...this.state.people};
@@ -104,6 +121,8 @@ class App extends Component {
     }
   }
 
+  //this method calculates the number of arrivals for the event.
+
   calculateArrivals() {
     let people = {...this.state.people};
     let arrivalsMap = Object.keys(people)
@@ -118,6 +137,8 @@ class App extends Component {
     this.setState({ arrivals });
   }
 
+  //adding a person is saved in state to be toggled on and off when adding a person from the admin page
+
   addAPerson () {
     this.setState({ isAddingPerson: true })
   }
@@ -125,6 +146,8 @@ class App extends Component {
   cancelAddPerson () {
     this.setState({ isAddingPerson: false })
   }
+
+  //submit a new person sends them to an FB post request and re-sets the people state
 
   submitNewPerson (firstName, lastName, about, guests) {
     if (guests === '' || NaN)
@@ -140,6 +163,8 @@ class App extends Component {
     this.setState({isAddingPerson: false})
   }
 
+  //deletes a person from the admin page using the delete button
+
   deletePerson(person) {
     axios.delete(`https://putmeonthelist-a86b4.firebaseio.com/${this.props.params.id}/people/${person}.json`)
       .then((response) => {
@@ -153,12 +178,17 @@ class App extends Component {
       })
   }
 
+  //edits the people state by changing the new attributes that have been submitted
+  //at the OnChange inputs from the editPerson component
+
   editPerson(person, attribute, event) {
     let people = {...this.state.people};
     let attr = event.target.value
     people[person][attribute] = attr;
     this.setState({ people })
   }
+
+  //changes the number of arrivals upon button press of the plus minus buttons in the person component
 
   changeArrivals(person, arrivals) {
     let people = {...this.state.people}
