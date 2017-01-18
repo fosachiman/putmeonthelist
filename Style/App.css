@@ -91,10 +91,11 @@
 }
 .guests {
   display: inline-block;
-  width: 15%;
+  width: 10%;
   vertical-align: top;
   font-size: 3em;
   padding-left: 2%;
+  line-height: 100%;
 }
 .name {
   font-size: 2em;
@@ -103,10 +104,10 @@
 }
 .about {
   padding: 0;
-  border: 0;
+  margin: 0;
 }
 .arrivals-container {
-  width: 30%;
+  width: 50%;
   height: 100%;
   background-color: rgba(220,220,220,1);
   display: inline-block;
@@ -116,35 +117,12 @@
   font-size: 3.5em;
   display: inline-block;
   padding-left: 10%;
-  vertical-align: top;
+  line-height: 100%;
+  vertical-align: middle;
 }
 .person-button-container {
   display: inline-block;
   height: 100%;
   padding-left: 15%;
 
-}
-.plus-button {
-  height: 46%;
-  margin-top: 2%;
-  background-color: green;
-  text-align: center;
-  border-radius: 30%;
-  display: block;
-  color: white;
-  border: none;
-}
-.minus-button {
-  height: 46%;
-  text-align: center;
-  background-color: red;
-  border-radius: 30%;
-  display: block;
-  color: white;
-  border: none;
-  margin-top: 2%;
-}
-.edit-delete-button-container {
-  width: 15%;
-  display: inline-block;
 }

@@ -64,11 +64,9 @@ export default class Person extends React.Component {
               <Button bsSize="large" className="plus-button" onClick={() => this.incrementArrivals(person)}>+</Button>
               <Button bsSize="large" className="minus-button" onClick={() => this.decrementArrivals(person)}>_</Button>
             </div>
-          </div>
-            <div className="edit-delete-button-container">
               <Button onClick={() => this.changeEditStatus()}>Edit</Button>
               <Button onClick={() => this.props.deletePerson(person)}>Delete</Button>
-            </div>
+          </div>
         </div>
       )
     }
